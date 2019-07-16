@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <button>Add</button>
+    <div class="wrapper">
+    </div>
+    <script>
+    let arr = [];
+
+    let addBtn = document.querySelector('button');
+
+    addBtn.addEventListener('click', () => {
+        arr.push({
+            title: 'Hello',
+            dscr: 'World'
+        });
+        console.log(arr);
+        let box = document.createElement('div');
+        let cont = document.querySelector('.wrapper');
+        cont.appendChild(box);
+        arr.forEach(el => {
+            box.textContent = el.title;
+            box.textContent = el.dscr;
+        });
+        box.addEventListener('click', () => {
+            cont.removeChild(box);
+            arr.forEach((el, i, array) => {
+                array.splice(i)
+            })
+        })
+    })
+    </script>
+</body>
+
+</html>

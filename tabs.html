@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <style>
+    .tabs {
+        display: inline-block;
+        padding: 10px;
+        background: #f1f1f1;
+        font-size: 20px;
+    }
+
+    .tabs:hover {
+        cursor: pointer;
+        background: #ddd;
+    }
+
+    .cont {
+        display: flex;
+    }
+
+    .box {
+        display: none;
+    }
+
+    .box--active {
+        display: block;
+    }
+
+    .tabs--active {
+        background: #ccc;
+    }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li data-box="1" class="tabs tabs--active">Link 1</li>
+        <li data-box="2" class="tabs">Link 2</li>
+        <li data-box="3" class="tabs">Link 3</li>
+    </ul>
+    <div class="cont">
+        <div data-box="1" class="box box--active">Block 1</div>
+        <div data-box="2" class="box">Block 2</div>
+        <div data-box="3" class="box">Block 3</div>
+    </div>
+    <script>
+    let tabs = document.querySelectorAll('.tabs');
+
+    let boxs = document.querySelectorAll('.box');
+
+    [].forEach.call(tabs, tab => {
+        tab.addEventListener('click', evt => {
+            // с активной по дефолту
+            let current = document.querySelector('.tabs--active');
+            current.classList.remove('tabs--active');
+            tab.classList.add('tabs--active');
+            // без активных по дефолту
+            /*let current = document.querySelectorAll('.tabs--active');
+            [].forEach.call(current, c => {
+                if (current.length > 0) {
+                    c.classList.remove('tabs--active');
+                };
+            });*/
+            tab.classList.add('tabs--active');
+            [].forEach.call(boxs, box => {
+                if (tab.dataset.box === box.dataset.box) {
+                    box.classList.add('box--active')
+                } else {
+                    box.classList.remove('box--active')
+                }
+            })
+        })
+    })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+    	input {
+    		margin-bottom: 15px;
+    	}
+
+    	label {
+    		color: red;
+    		margin-bottom: 15px;
+    		display: block;
+    	}
+
+    	.error-fields {
+    		border: 2px solid red;
+    	}
+    </style>
+</head>
+
+<body>
+
+	<form action="#" method="post" novalidate>
+		<input type="email" id="email" name="email"><br>
+		<input type="password" id="password" name="password"><br>
+		<label></label>
+		<button>Send</button>
+	</form>
+    
+    <script>
+	
+		let form = document.querySelector('form');
+
+		let label = document.querySelector('label');
+
+		let email = document.querySelector('#email');
+
+		let password = document.querySelector('#password');
+
+		form.addEventListener('submit', evt => {
+
+			let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
+			if(!re.test(form.email.value) || form.password.value === '') {
+				evt.preventDefault();
+				label.textContent = 'Заполните эмейл и пароль';
+				email.classList.add('error-fields');
+				password.classList.add('error-fields')
+			};
+
+			if(re.test(form.email.value) && form.password.value === '') {
+				evt.preventDefault();
+				label.textContent = 'Заполните пароль';
+				email.classList.remove('error-fields')
+			};
+
+			if(form.password.value && !re.test(form.email.value)) {
+				evt.preventDefault();
+				label.textContent = 'Заполните эмейл';
+				password.classList.remove('error-fields')
+			}
+		})
+
+    </script>
+</body>
+
+</html>

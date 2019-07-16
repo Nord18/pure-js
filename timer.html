@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title></title>
+</head>
+
+<body>
+    <h1>Timer: <span>5</span></h1>
+    <button class="btn">Start</button>
+    <script>
+    let btn = document.querySelector('.btn');
+
+    class Timer {
+        constructor(span) {
+            this.span = span
+            // this.span = document.querySelector('span')
+        }
+        startTimer() {
+            setInterval(() => {
+                let timer = parseFloat(this.span.textContent);
+                if (timer <= 0) {
+                    clearInterval(this)
+                } else {
+                    this.span.textContent = (timer - 0.1).toFixed(1)
+                }
+            }, 100);
+            console.log(this.span)
+        }
+    };
+
+    let counter = new Timer(document.querySelector('span'));
+
+    btn.addEventListener('click', () => {
+        counter.startTimer()
+    })
+    </script>
+</body>
+
+</html>
